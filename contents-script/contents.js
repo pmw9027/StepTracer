@@ -8,8 +8,6 @@ let svg = null;
 // assemble container element
 const container = document.createElement('div');
 
-const image = document.createElement('img');
-
 container.id = 'visual-history-container';
 
 // attach container element to document body wherever convenient
@@ -53,13 +51,6 @@ chrome.runtime.onMessage.addListener((data, sender, sendResponse) => {
 
     console.log(data);
 
-    document.body.classList.add('visual-history-freeze');
-    container.className = 'visual-history-container-visible';
-
-    container.style.setProperty("top", String(document.body.scrollTop) + 'px', "important");
-    container.style.setProperty("left", String(document.body.scrollLeft) + 'px', "important");
-
-    container.style.opacity = '1';
 
     if(data['action'] == 'image') {
 
@@ -100,6 +91,13 @@ chrome.runtime.onMessage.addListener((data, sender, sendResponse) => {
                 .on('click', click);
         }
         else {
+
+            document.body.classList.add('visual-history-freeze');
+            container.className = 'visual-history-container-visible';
+
+            container.style.setProperty("top", String(document.body.scrollTop) + 'px', "important");
+            container.style.setProperty("left", String(document.body.scrollLeft) + 'px', "important");
+            container.style.opacity = '1';
 
             if(SELECTING) {
 

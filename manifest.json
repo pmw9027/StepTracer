@@ -1,5 +1,12 @@
 {
-  "permissions": [ "history", "tabs", "activeTab","tabCapture", "<all_urls>"],
+  "permissions": [
+    "history",
+    "tabs",
+    "activeTab",
+    "tabCapture",
+    "<all_urls>",
+    "contextMenus"
+  ],
   "background": {
       "scripts": [
         "bg/d3-hierarchy.v0.2.min.js",
@@ -46,7 +53,7 @@
    "icons": {
       "48": "icons/icon48.png"
    },
-   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjEf5D6x8Dmq1KQBsz27MqzCUQ5WAdeVRKXK/QwxBKPxXIzR48v3/5BgRWqnh1uRlZuwXV4feD5TeX/6WnrueK7yRVarTb8HjoFO82Onz33xqr681HeZXXsvVwrwR2NHOdGerP1HxHleBO/JzpwwxC7BIiFDVBqfBj2E4DtCyghTy5IOmrUpikPacMC6boSXj2voQx4l4Q3UugnXIaqIT7gmMC/ufPJlsD4RgMK2s+c1FBZriJDcuf8/R10L8iFF5cQ9s90cxEiAL3EyHwuuiFd2RPdNUPPOddtK1ItLpUaQucQSOt87B4ClN4fyUZBm5rDzotu3MgkbljR0/xsAXcwIDAQAB",
+   "key": "Test",
    "manifest_version": 2,
    "name": "Step Tracer",
    "update_url": "https://clients2.google.com/service/update2/crx",

@@ -8,7 +8,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
     chrome.tabs.captureVisibleTab(null,{format:"jpeg",quality:1},function(img) {
         //post message only after call back return with Data URL
-        console.log(img);
 
         image = img;
     });
@@ -53,9 +52,20 @@ chrome.commands.onCommand.addListener(command => {
     });
 });
 
-chrome.runtime.onSuspend.addListener(request => {
+chrome.contextMenus.create({
+    title: "Push link to tree in background",
+    contexts: ["link"],
+    onclick: (info, tab) => {
+        if (info.linkUrl) {
 
-    console.log("test");
+            console.log(info);
 
-
+            // const current = tabs[tab.id].currentNode;
+            histreeStorage.insertNodeIntoTreeByTabId({
+                url: info.linkUrl,
+                title: info.selectionText,
+                favIconUrl: ""
+            }, tab.id);
+        }
+    }
 });
