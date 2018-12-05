@@ -13,10 +13,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     });
     if (request.from === 'browser_action') {
         if (request.action === 'get-tree') {
+            chrome.tabs.get(request.data.tab.id, tab => {
+                if (tab.status === 'complete') {
+                    chrome.tabs.sendMessage(request.data.tab.id, histreeStorage.getHistreeForTabId(request.data.tab.id));
 
-            chrome.tabs.sendMessage(request.data.tab.id, histreeStorage.getHistreeForTabId(request.data.tab.id));
-
-            // return sendResponse();
+                }
+            });
         }
     }
 

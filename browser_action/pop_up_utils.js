@@ -17,7 +17,7 @@ function log(message) {
 }
 
 function error(message) {
-  var errorDiv = document.createElement('div')
+  var errorDiv = document.createElement('div');
   errorDiv.textContent = message;
   document.body.append(errorDiv);
 }
@@ -27,7 +27,18 @@ function getActiveTab(callback) {
     active: true,
     currentWindow: true
   }, (tabs) => {
-    callback(tabs[0]);
+      error('Loading...');
+
+      if(tabs[0].status === 'loading') {
+
+        setTimeout(() => {getActiveTab(callback)}, 1000);
+
+    } else {
+
+        callback(tabs[0]);
+
+    }
+
   });
 }
 
