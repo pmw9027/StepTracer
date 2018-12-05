@@ -1,0 +1,47 @@
+{
+   "background": {
+      "persistent": true,
+      "scripts": [
+        "bg/d3-hierarchy.v0.2.min.js",
+        "bg/HistreeStorage.js",
+        "bg/tree_utils.js",
+        "bg/background.js"
+      ]
+   },
+   "browser_action": {
+      "default_icon": "icons/icon48.png",
+      "default_popup": "browser_action/browser_action.html",
+      "default_title": "Step Tracer"
+   },
+   "description": "Visualize your tab history as a tree",
+//   "homepage_url": "http://www.elliotplant.com",
+
+   "content_scripts": [ {
+      "css": [
+        "contents-script/contents.css",
+        "contents-script/browser_action.css"
+
+      ],
+      "js": [
+        "contents-script/jquery-3.3.1.min.js",
+        "contents-script/d3.min.js",
+        "contents-script/pop_up_utils.js",
+        "contents-script/visualization.js",
+        "contents-script/d3-selection.v0.7.min.js",
+        "contents-script/d3-selection.v0.7.min.js",
+        "contents-script/contents.js"],
+      "matches": [ "http://*/*", "https://*/*" ]
+   } ],
+
+
+   "icons": {
+      "48": "icons/icon48.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjEf5D6x8Dmq1KQBsz27MqzCUQ5WAdeVRKXK/QwxBKPxXIzR48v3/5BgRWqnh1uRlZuwXV4feD5TeX/6WnrueK7yRVarTb8HjoFO82Onz33xqr681HeZXXsvVwrwR2NHOdGerP1HxHleBO/JzpwwxC7BIiFDVBqfBj2E4DtCyghTy5IOmrUpikPacMC6boSXj2voQx4l4Q3UugnXIaqIT7gmMC/ufPJlsD4RgMK2s+c1FBZriJDcuf8/R10L8iFF5cQ9s90cxEiAL3EyHwuuiFd2RPdNUPPOddtK1ItLpUaQucQSOt87B4ClN4fyUZBm5rDzotu3MgkbljR0/xsAXcwIDAQAB",
+   "manifest_version": 2,
+   "name": "Step Tracer",
+   "permissions": [ "history", "tabs" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "web_accessible_resources": [ "icons/icon_blue_48.png", "icons/icon_yellow_48.png", "icons/icon48.png", "icons/thumbnail.jpg"  ],
+   "version": "1.1.1"
+}
