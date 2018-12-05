@@ -22,8 +22,7 @@
       "default_popup": "browser_action/browser_action.html",
       "default_title": "Step Tracer"
    },
-   "description": "Visualize your tab history as a tree",
-//   "homepage_url": "http://www.elliotplant.com",
+   "description": "Trace your step using the tree visualization when you surf the web",
 
    "content_scripts": [ {
       "css": [
@@ -45,7 +44,7 @@
     "action": {
       "description": "Move down the tree",
       "suggested_key": {
-        "default": "Ctrl+Shift+G"
+        "default": "Ctrl+Shift+Z"
       }
     }
   },
@@ -56,7 +55,6 @@
    "key": "Test",
    "manifest_version": 2,
    "name": "Step Tracer",
-   "update_url": "https://clients2.google.com/service/update2/crx",
    "web_accessible_resources": [ "icons/icon_blue_48.png", "icons/icon_yellow_48.png", "icons/icon48.png", "icons/thumbnail.jpg"  ],
    "version": "1.1.1"
 }
