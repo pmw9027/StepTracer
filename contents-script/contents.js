@@ -7,6 +7,9 @@ let svg = null;
 
 // assemble container element
 const container = document.createElement('div');
+
+const image = document.createElement('img');
+
 container.id = 'visual-history-container';
 
 // attach container element to document body wherever convenient
@@ -58,48 +61,66 @@ chrome.runtime.onMessage.addListener((data, sender, sendResponse) => {
 
     container.style.opacity = '1';
 
+    if(data['action'] == 'image') {
 
-    if(false){
+        image.setAttribute("src", data['img']);
 
-        svg = d3_selection.select('#visual-history-container')
-            .append('svg')
-            .attr('width', 100)
-            .attr('height', 100)
-            .attr('id', 'visual-history-svg')
-            .append('g');
+        console.log(image);
 
-        // append and class links
-        // const links = svg.selectAll('path').data(data.links, link => link.id);
-        // links.enter().append('line')
-        //     .attr("class", "visual-history-link")
-        //     .attr("x1", link => link.source.x)
-        //     .attr("y1", link => link.source.y)
-        //     .attr("x2", link => link.target.x)
-        //     .attr("y2", link => link.target.y);
-
-        const nodes = svg.selectAll('g').data(data.root, node => node.id);
-        const createNode = nodes.enter().append('g')
-            .attr('transform', node => `translate(${node.position.x},${node.position.y})`)
-            .classed('visual-history-current', node => node.id === data.current.id)
-            .classed('visual-history-preview', node => node.data.preview)
-            .classed('visual-history-node', true)
-            .attr('id', node => `visual-history-id-${node.id}`)
-            .on('click', click);
+        document.body.appendChild(image);
     }
     else {
 
-        if(SELECTING) {
 
-            exit(false);
+        if(false){
 
+            svg = d3_selection.select('#visual-history-container')
+                .append('svg')
+                .attr('width', 100)
+                .attr('height', 100)
+                .attr('id', 'visual-history-svg')
+                .append('g');
+
+            // append and class links
+            // const links = svg.selectAll('path').data(data.links, link => link.id);
+            // links.enter().append('line')
+            //     .attr("class", "visual-history-link")
+            //     .attr("x1", link => link.source.x)
+            //     .attr("y1", link => link.source.y)
+            //     .attr("x2", link => link.target.x)
+            //     .attr("y2", link => link.target.y);
+
+            const nodes = svg.selectAll('g').data(data.root, node => node.id);
+            const createNode = nodes.enter().append('g')
+                .attr('transform', node => `translate(${node.position.x},${node.position.y})`)
+                .classed('visual-history-current', node => node.id === data.current.id)
+                .classed('visual-history-preview', node => node.data.preview)
+                .classed('visual-history-node', true)
+                .attr('id', node => `visual-history-id-${node.id}`)
+                .on('click', click);
         }
         else {
-            const histreeVisualization = new HistreeVisualization(data.depth, data.width);
-            histreeVisualization.drawTree(data.root, data.currentNode);
+
+            if(SELECTING) {
+
+                exit(false);
+
+            }
+            else {
+                const histreeVisualization = new HistreeVisualization(data.depth, data.width);
+                histreeVisualization.drawTree(data.root, data.currentNode);
 
 
-            SELECTING = !SELECTING;
+                SELECTING = !SELECTING;
 
+            }
         }
     }
+});
+window.addEventListener("beforeunload", function (event) {
+    // Cancel the event as stated by the standard.
+
+    chrome.runtime.sendMessage({'test':'tt'}, (response )=> {});
+
+
 });

@@ -1,13 +1,15 @@
 {
-   "background": {
-      "persistent": true,
+  "permissions": [ "history", "tabs", "activeTab","tabCapture", "<all_urls>"],
+  "background": {
       "scripts": [
         "bg/d3-hierarchy.v0.2.min.js",
         "bg/HistreeStorage.js",
         "bg/tree_utils.js",
         "bg/background.js"
-      ]
-   },
+      ],
+      "persistent": true
+
+  },
    "browser_action": {
       "default_icon": "icons/icon48.png",
       "default_popup": "browser_action/browser_action.html",
@@ -47,7 +49,6 @@
    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjEf5D6x8Dmq1KQBsz27MqzCUQ5WAdeVRKXK/QwxBKPxXIzR48v3/5BgRWqnh1uRlZuwXV4feD5TeX/6WnrueK7yRVarTb8HjoFO82Onz33xqr681HeZXXsvVwrwR2NHOdGerP1HxHleBO/JzpwwxC7BIiFDVBqfBj2E4DtCyghTy5IOmrUpikPacMC6boSXj2voQx4l4Q3UugnXIaqIT7gmMC/ufPJlsD4RgMK2s+c1FBZriJDcuf8/R10L8iFF5cQ9s90cxEiAL3EyHwuuiFd2RPdNUPPOddtK1ItLpUaQucQSOt87B4ClN4fyUZBm5rDzotu3MgkbljR0/xsAXcwIDAQAB",
    "manifest_version": 2,
    "name": "Step Tracer",
-   "permissions": [ "history", "tabs" ],
    "update_url": "https://clients2.google.com/service/update2/crx",
    "web_accessible_resources": [ "icons/icon_blue_48.png", "icons/icon_yellow_48.png", "icons/icon48.png", "icons/thumbnail.jpg"  ],
    "version": "1.1.1"
