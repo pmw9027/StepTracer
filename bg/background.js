@@ -6,10 +6,11 @@ let image;
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     // Handles requests from browser_action.js
 
-    chrome.tabs.captureVisibleTab(null,{format:"jpeg",quality:1},function(img) {
+    chrome.tabs.captureVisibleTab(null,{format:"jpeg",quality:10},function(img) {
         //post message only after call back return with Data URL
-
+        console.log(img);
         image = img;
+
     });
     if (request.from === 'browser_action') {
         if (request.action === 'get-tree') {
@@ -34,7 +35,8 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
             move:true,
             url: tab.url,
             title: tab.title,
-            favIconUrl: tab.favIconUrl
+            favIconUrl: tab.favIconUrl,
+            image: image
         }, tab.id);
 
         chrome.tabs.sendMessage(tabId, {'action': 'image', 'img':image});

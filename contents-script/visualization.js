@@ -56,12 +56,31 @@ class HistreeVisualization {
             return y;
         }
 
+        //////////////////////////////////////////////////////////////
         $("#visual-history-container")
+        // 1, 2, 3, 4 사분면
             .css("left", `${window.scrollX}px`)
             .css("top",`${window.scrollY}px`)
-            .css("width", `${window.innerWidth-10}px`)
-            .css("height",`${window.innerHeight-10}px`);
+            .css("width", `${window.innerWidth - 10}px`)
+            .css("height",`${window.innerHeight - 10}px`);
 
+            // 1, 2 사분면
+            // .css("left", `${window.scrollX}px`)
+            // .css("top",`${window.scrollY}px`)
+            // .css("width", `${window.innerWidth - 10}px`)
+            // .css("height",`${(window.innerHeight - 10) / 2}px`);
+
+            // 1, 3 사분면
+            // .css("left", `${window.scrollX + window.innerWidth/2}px`)
+            // .css("top",`${window.scrollY}px`)
+            // .css("width", `${(window.innerWidth - 10) / 2}px`)
+            // .css("height",`${window.innerHeight - 10}px`);
+
+            // 1 사분면
+            // .css("left", `${window.scrollX + window.innerWidth/2}px`)
+            // .css("top",`${window.scrollY}px`)
+            // .css("width", `${(window.innerWidth - 10) / 2}px`)
+            // .css("height",`${(window.innerHeight - 10) / 2}px`);
 
         // Compute the new tree layout.
         var nodes = this.tree.nodes(this.root)
@@ -121,24 +140,35 @@ class HistreeVisualization {
 
                 let xOffset = 0;
                 let yOffset = 0;
-                let title = e.title;
+                let title = firstNCharacters(e.title, 20);
                 var c = (title != "") ? "<br/><br/>" + title : "";
                 $("#visual-history-container")
                     .append(`<p id='preview'>
-                            <img src='${chrome.extension.getURL('icons/thumbnail.jpg')}' 
+                            <img src='${e.image}'
                                  href="${e.url}" 
-                                 style='width:190px; height:180px' 
+                                 style='width:238px; height:135px; border: solid 1px; border-radius: 2px;' 
                                  alt='Image preview'
                             /> 
                             ${c}
                             </p>`);
 
-
+                //////////////////////////////////////////////////////////////
                 $("#preview")
-                    .css("top", `${y}px`)
-                    .css("left",`${x}px`)
-                    // .css("top",(e.bbox.y - yOffset) + "px")
-                    // .css("left",(e.bbox.x + xOffset) + "px")
+                // 1, 2, 3, 4 사분면
+                    .css("top", `${y-window.scrollY}px`)
+                    .css("left",`${x-window.scrollX}px`)
+
+                    // 1, 2 사분면
+                    // .css("top", `${y-window.scrollY }px`)
+                    // .css("left",`${x-window.scrollX}px`)
+
+                    // 1, 3 사분면
+                    // .css("top", `${y-window.scrollY}px`)
+                    // .css("left",`${x-window.scrollX - (window.innerWidth/2) }px`)
+
+                    // 1 사분면
+                    // .css("top", `${y-window.scrollY}px`)
+                    // .css("left",`${x-window.scrollX - (window.innerWidth/2)}px`)
                     .fadeIn("slow");
 
                 console.log('mouseover 이벤트 발생', e);
