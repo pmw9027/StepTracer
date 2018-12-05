@@ -44,6 +44,8 @@ function click(node) {
     // this is the only time we callback with a url
     // in all other cases, backend.js already knows
     // about the changes and will update accordingly
+
+
     exit(node.data.url);
 }
 

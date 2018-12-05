@@ -25,7 +25,7 @@ class HistreeStorage {
         // Else if the tab already has a tree
         else {
             // Check to see if the node is already in the tree
-            var visitedNode = treeHasVisited(this.rootsDict[tabId].root, node);
+            let visitedNode = treeHasVisited(this.rootsDict[tabId].root, node);
 
             // If the node is already in the tree
             if (visitedNode) {
@@ -33,10 +33,15 @@ class HistreeStorage {
                 this.rootsDict[tabId].currentNode = visitedNode;
             }
             else {
+
                 // Else add the node as a child of the current node
                 this.rootsDict[tabId].currentNode.children.push(node);
-                // and set the current node to the new page
-                this.rootsDict[tabId].currentNode = node;
+
+
+                if (node.move) {
+                    // and set the current node to the new page
+                    this.rootsDict[tabId].currentNode = node;
+                }
             }
 
             // Recalc width and depth of tree

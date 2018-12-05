@@ -29,11 +29,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     if (changeInfo.status === 'complete') {
         histreeStorage.insertNodeIntoTreeByTabId({
+            move:true,
             url: tab.url,
             title: tab.title,
             favIconUrl: tab.favIconUrl
         }, tab.id);
-
 
         chrome.tabs.sendMessage(tabId, {'action': 'image', 'img':image});
     }
@@ -62,6 +62,7 @@ chrome.contextMenus.create({
 
             // const current = tabs[tab.id].currentNode;
             histreeStorage.insertNodeIntoTreeByTabId({
+                move:false,
                 url: info.linkUrl,
                 title: info.selectionText,
                 favIconUrl: ""
