@@ -25,3 +25,16 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         }, tab.id);
     }
 });
+
+chrome.commands.onCommand.addListener(command => {
+    chrome.tabs.query({active: true, currentWindow: true}, activeTabs => {
+        const id = activeTabs[0].id;
+        if(command == 'action') {
+
+            chrome.tabs.sendMessage(id, histreeStorage.getHistreeForTabId(id));
+
+
+        }
+    });
+});
+

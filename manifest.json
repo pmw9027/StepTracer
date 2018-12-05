@@ -32,7 +32,14 @@
         "contents-script/contents.js"],
       "matches": [ "http://*/*", "https://*/*" ]
    } ],
-
+  "commands": {
+    "action": {
+      "description": "Move down the tree",
+      "suggested_key": {
+        "default": "Ctrl+Shift+G"
+      }
+    }
+  },
 
    "icons": {
       "48": "icons/icon48.png"
